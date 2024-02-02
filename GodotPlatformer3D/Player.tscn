@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://7nldlbl1kpd3"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_iemir"]
+[ext_resource type="ArrayMesh" uid="uid://gjuyfsvj5gs0" path="res://Models/characterVampire.obj" id="2_egqrl"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jgowc"]
+radius = 0.3
+height = 1.2
+
+[sub_resource type="LabelSettings" id="LabelSettings_h63ka"]
+font_size = 57
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
+script = ExtResource("1_iemir")
+
+[node name="Model" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+mesh = ExtResource("2_egqrl")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.603288, 0)
+shape = SubResource("CapsuleShape3D_jgowc")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.94476, 0.327762, 0, -0.327762, 0.94476, 0, 2.50618, 5.04603)
+current = true
+fov = 60.1
+
+[node name="ScoreText" type="Label" parent="."]
+offset_left = 40.0
+offset_top = 22.0
+offset_right = 405.0
+offset_bottom = 103.0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_h63ka")
